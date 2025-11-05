@@ -6,7 +6,6 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @property
     def price(self) -> int:
 
@@ -19,7 +18,6 @@ class Product:
             print("Цена должна быть больше ноля")
         else:
             self.__price = value
-
 
     @classmethod
     def new_product(cls, product_data: dict):
@@ -35,8 +33,10 @@ class Product:
                 """
 
         return cls(
+
             name=product_data.get("name", ""),
-            description = product_data.get("description", ""),
+            description=product_data.get("description", ""),
             price=product_data.get("price", 0),
             quantity=product_data.get("quantity", 0),
+
         )

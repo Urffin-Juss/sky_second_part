@@ -12,7 +12,7 @@ def load_categories_from_json(filepath: str = "data/data.json") -> list[Category
         """
     path = Path(filepath)
 
-    with path.open(encoding=utf-8) as f:
+    with path.open(encoding=UTF-8) as f:
         raw_data = json.load(f)
 
     categories: list[Category] = []
