@@ -3,8 +3,22 @@ class Product:
     def __init__(self, name: str, description: str, price: int, quantity: int):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
+
+
+    @property
+    def price(self) -> int:
+
+        return self.__price
+
+    @price.setter
+    def price(self, value: int):
+
+        if value <= 0:
+            print("Цена должна быть больше ноля")
+        else:
+            self.__price = value
 
 
     @classmethod
