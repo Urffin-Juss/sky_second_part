@@ -5,3 +5,24 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
+
+
+    @classmethod
+    def new_product(cls, product_data: dict):
+        """
+                Создаёт новый объект Product на основе данных из словаря.
+                Пример product_data:
+                {
+                    "name": "Хлеб",
+                    "description": "Пшеничный",
+                    "price": 50,
+                    "quantity": 10
+                }
+                """
+
+        return cls(
+            name=product_data.get("name", ""),
+            description = product_data.get("description", ""),
+            price=product_data.get("price", 0),
+            quantity=product_data.get("quantity", 0),
+        )
