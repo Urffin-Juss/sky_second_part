@@ -1,5 +1,6 @@
 class Product:
-    def __init__(self, name: str, description: str, products: list[Product]):
+    def __init__(self, name: str, description: str, price: int, quantity: int):
         self.name = name
         self.description = description
-        self.products = products
+        self.price = price
+        self.quantity = quantity

@@ -1,7 +1,5 @@
 from Product import Product
 from Category import Category
-from loader import load_categories_from_json
-
 
 
 if __name__ == "__main__":
