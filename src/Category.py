@@ -22,6 +22,16 @@ class Category:
         self.__products.append(product)
         Category.product_count += 1
 
-    def get_product(self) -> list[Product]:
 
-        return self.__products
+    @property
+    def get_product(self) -> list[str]:
+        """
+                Геттер для приватного списка товаров.
+                Возвращает список строк в формате:
+                'Название продукта, 80 руб. Остаток: 15 шт.'
+                """
+
+        return [
+            f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт."
+            for p in self.__products
+            ]
