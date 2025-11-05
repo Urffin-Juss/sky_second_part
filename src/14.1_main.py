@@ -46,11 +46,3 @@ if __name__ == "__main__":
 
     print(Category.category_count)
     print(Category.product_count)
-
-    categories = load_categories_from_json("data/data.json")
-
-    for c in categories:
-        print(f"Категория: {c.name} ({c.description})")
-        for p in c.products:
-            print(f"  - {p.name}: {p.price} руб. (остаток {p.quantity})")
-
