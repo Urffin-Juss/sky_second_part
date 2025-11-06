@@ -40,3 +40,7 @@ class Product:
             quantity=product_data.get("quantity", 0),
 
         )
+
+    def __str__(self) -> str:
+        """Возвращает описание товара"""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
