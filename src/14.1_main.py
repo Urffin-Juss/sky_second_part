@@ -1,4 +1,5 @@
-from class_Product import Product
+from Product import Product
+from Category import Category
 
 
 if __name__ == "__main__":
