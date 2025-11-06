@@ -22,7 +22,7 @@ class Category:
         Category.product_count += 1
 
     @property
-    def get_product(self) -> list[str]:
+    def product(self) -> list[str]:
         """
                 Геттер для приватного списка товаров.
                 Возвращает список строк в формате:
