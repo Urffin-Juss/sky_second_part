@@ -1,6 +1,8 @@
 import pytest
 from Product import Product
 from Category import Category
+from Smartphone import Smartphone
+from LawnGrass import LawnGrass
 
 
 def test_product_str():
@@ -39,3 +41,50 @@ def test_category_products_property_uses_product_str():
     products_view = cat.products
     assert len(products_view) == 1
     assert products_view[0] == "Хлеб, 50 руб. Остаток: 10 шт."
+
+
+def test_add_product_allows_product():
+    Category.category_count = 0
+    Category.product_count = 0
+
+    p = Product("Хлеб", "Пшеничный", 50, 10)
+    cat = Category("Продукты", "Еда", [])
+
+    cat.add_product(p)
+
+    # через property products возвращаются строки
+    assert len(cat.products) == 1
+    assert "Хлеб" in cat.products[0]
+    assert Category.product_count == 1
+
+
+def test_add_product_rejects_other_types():
+    """Если передать не Product и не наследника — должна быть ошибка."""
+    cat = Category("Продукты", "Еда", [])
+
+    with pytest.raises(TypeError):
+        cat.add_product("я не продукт")  # type: ignore
+
+def test_add_product_allows_product_subclasses():
+    """Должно пускать наследников Product (Smartphone, LawnGrass и т.п.)."""
+    Category.category_count = 0
+    Category.product_count = 0
+
+    phone = Smartphone(
+        name="iPhone 15",
+        description="Флагман",
+        price=120000,
+        quantity=2,
+        efficiency="high",
+        model="A3100",
+        memory=256,
+        color="black",
+    )
+
+    cat = Category("Электроника", "Гаджеты", [])
+    cat.add_product(phone)
+
+    assert len(cat.products) == 1
+    assert "iPhone 15" in cat.products[0]
+    # счётчик тоже должен обновиться
+    assert Category.product_count == 1
