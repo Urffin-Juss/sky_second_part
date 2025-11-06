@@ -7,4 +7,6 @@ Network Marketplace - это децентрализованная платфор
 
 
 
-powered by Pomogaev Yaroslav 
+powered by Pomogaev Yaroslav TM
+
+design by MCC of RHM

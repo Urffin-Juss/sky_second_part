@@ -1,7 +1,7 @@
-# tests/test_product_category.py
-
 from Product import Product
 from Category import Category
+
+
 
 
 def test_product_init():
@@ -36,3 +36,88 @@ def test_category_init_counts():
 
     assert Category.category_count == 2
     assert Category.product_count == 2  # товаров во второй нет
+
+
+def test_product_price_setter_valid():
+    p = Product("Хлеб", "Пшеничный", 50, 10)
+
+    p.price = 120
+
+    assert p.price == 120
+
+
+def test_product_price_setter_invalid(capsys):
+    p = Product("Хлеб", "Пшеничный", 50, 10)
+
+    # пробуем поставить ноль
+    p.price = 0
+    captured = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured.out
+    # цена не изменилась
+    assert p.price == 50
+
+    # пробуем отрицательную
+    p.price = -10
+    captured = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured.out
+    # цена опять не изменилась
+    assert p.price == 50
+
+def test_category_init_and_class_counters():
+    # обнулим, чтобы тест был повторяемый
+    Category.category_count = 0
+    Category.product_count = 0
+
+    p1 = Product("Хлеб", "Пшеничный", 50, 10)
+    p2 = Product("Молоко", "3.2%", 80, 5)
+
+    cat = Category("Продукты", "Еда", [p1, p2])
+
+    assert cat.name == "Продукты"
+    assert cat.description == "Еда"
+
+    # проверяем, что счётчики класса обновились
+    assert Category.category_count == 1
+    assert Category.product_count == 2
+
+
+def test_category_add_product():
+    Category.category_count = 0
+    Category.product_count = 0
+
+    p1 = Product("Хлеб", "Пшеничный", 50, 10)
+    cat = Category("Продукты", "Еда", [p1])
+
+    p2 = Product("Молоко", "3.2%", 80, 5)
+    cat.add_product(p2)
+
+    # приватный список мы напрямую не трогаем — проверяем через property
+    products_strings = cat.products
+    assert len(products_strings) == 2
+    assert "Молоко" in products_strings[1]
+
+    # счётчик класса тоже должен увеличиться
+    assert Category.product_count == 2
+
+
+def test_category_add_product_only_product():
+    cat = Category("Пустая", "test", [])
+
+    # передаём что-то, что не Product — должно упасть
+    with pytest.raises(TypeError):
+        cat.add_product("не продукт")  # type: ignore
+
+
+def test_category_products_property_format():
+    p1 = Product("Хлеб", "Пшеничный", 50, 10)
+    p2 = Product("Молоко", "3.2%", 80, 5)
+
+    cat = Category("Продукты", "Еда", [p1, p2])
+
+    result = cat.products  # это уже список строк
+
+    assert isinstance(result, list)
+    assert "Хлеб" in result[0]
+    assert "руб." in result[0]
+    assert "Остаток:" in result[0]
+
