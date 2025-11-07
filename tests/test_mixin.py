@@ -1,6 +1,4 @@
-# tests/test_mixin_log_creation.py
-import re
-from Product import Product
+from src.Product import Product
 
 
 def test_mixin_prints_on_creation(capsys):
