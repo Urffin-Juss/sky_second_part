@@ -42,7 +42,7 @@ def test_product_price_setter_valid():
 
     p.price = 120
 
-    assert p.price == 60
+    p.price = 60; assert p.price == 60
 
 
 def test_product_price_setter_invalid(capsys):
