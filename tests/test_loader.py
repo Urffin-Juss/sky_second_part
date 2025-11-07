@@ -1,7 +1,6 @@
-import json
-from src.Category import Category
+﻿import json
 from src.load_json_func import load_categories_from_json
-
+from src.Category import Category
 
 def test_load_categories_from_json(tmp_path):
     # обнулим счётчики классов, чтобы не влиял порядок других тестов
@@ -40,34 +39,29 @@ def test_load_categories_from_json(tmp_path):
 
     categories = load_categories_from_json(str(json_path))
 
-    # ДИАГНОСТИКА:
-    print(f"categories[0] тип: {type(categories[0])}")
-    print(f"categories[0]: {categories[0]}")
-    print(f"categories[0].products тип: {type(categories[0].products)}")
-    print(f"categories[0].products: {categories[0].products}")
-    if categories[0].products:
-        print(f"categories[0].products[0] тип: {type(categories[0].products[0])}")
-        print(f"categories[0].products[0]: {categories[0].products[0]}")
-
-
+    # проверяем, что создались 2 категории
     assert len(categories) == 2
+    assert isinstance(categories[0], Category)
+    assert categories[0].name == "Продукты"
+    assert isinstance(categories[1], Category)
+    assert categories[1].name == "Бытовая химия"
 
+    # у первой категории 2 товара
+    assert len(categories[0].products) == 2
+    
+    # ПРОВЕРЯЕМ АТРИБУТЫ ВМЕСТО isinstance
+    assert hasattr(categories[0].products[0], 'name')
+    assert hasattr(categories[0].products[0], 'price')
+    assert hasattr(categories[0].products[0], 'quantity')
+    assert categories[0].products[0].price == 50
+    assert categories[0].products[0].name == "Хлеб"
+    
+    assert hasattr(categories[0].products[1], 'name')
+    assert hasattr(categories[0].products[1], 'price')
+    assert hasattr(categories[0].products[1], 'quantity') 
+    assert categories[0].products[1].price == 80
+    assert categories[0].products[1].name == "Молоко"
 
-    assert "Продукты" in categories[0]
-    assert "Бытовая химия" in categories[1]
-
-
-    if hasattr(categories[0], 'products'):
-        assert len(categories[0].products) == 2
-        assert "Хлеб" in categories[0].products[0]
-        assert "50" in categories[0].products[0]  # цена
-    else:
-
-        assert "Хлеб" in categories[0]
-        assert "50" in categories[0]
-        assert "Молоко" in categories[0]
-        assert "80" in categories[0]
-
-
-    # assert Category.category_count == 2
-    # assert Category.product_count == 2
+    # класс-счётчики тоже должны обновиться
+    assert Category.category_count == 2
+    assert Category.product_count == 2
