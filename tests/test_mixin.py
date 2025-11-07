@@ -55,3 +55,26 @@ def test_mixin_does_not_break_product_functionality(capsys):
     captured = capsys.readouterr()
     assert "Цена" in captured.out  # часть сообщения предупреждения
     assert p.price == 700
+
+
+def test_baseproduct_is_abstract():
+    # instantiating abstract should raise TypeError
+    with pytest.raises(TypeError):
+        BaseProduct("x", 10)  # abstract can't be instantiated when abstract methods exist
+
+
+def test_mixin_prints_args_kwargs(capsys):
+    # create a temporary subclass that uses the mixin and minimal init
+    class Echo(LogCreationMixin, BaseProduct):
+        def __init__(self, name, price, **kwargs):
+            super().__init__(name, price, **kwargs)
+        def get_info(self):
+            return f"{self.name}"
+
+    e = Echo("X", 1, k=2)
+    out = capsys.readouterr().out
+    assert "Создан объект класса Echo" in out or "Создан объект класса" in out
+    assert "X" in out
+    assert "1" in out
+    # kwargs printed
+    assert "k" in out or "kwargs" in out
