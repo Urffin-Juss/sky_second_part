@@ -41,3 +41,7 @@ class Category(BaseProduct):
 
         total_quantity = sum(p.quantity for p in self.__products)
         return f"{self.name}, количество продуктов: {total_quantity} шт. "
+
+    def get_info(self):
+        """Возвращает информацию о категории"""
+        return f"Категория: {self.name}, количество продуктов: {len(self.products)}"

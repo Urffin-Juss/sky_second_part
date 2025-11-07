@@ -59,3 +59,7 @@ class Product(LogCreationMixin, BaseProduct):
             raise TypeError("Нельзя складывать товары разных типов")
 
         return self.__price * self.quantity + other.__price * other.quantity
+
+    def get_info(self):
+        """Возвращает информацию о продукте"""
+        return f"{self.name} - {self.description}, цена: {self.price} руб."
