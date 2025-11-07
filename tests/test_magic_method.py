@@ -1,7 +1,6 @@
-import pytest
-from Product import Product
-from Category import Category
-from Smartphone import Smartphone
+from src.Product import Product
+from src.Category import Category
+from src.Smartphone import Smartphone
 
 
 def test_product_str():

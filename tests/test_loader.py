@@ -1,10 +1,8 @@
-# tests/test_loader.py
-
 import json
 
-from Product import Product
-from Category import Category
-from loader import load_categories_from_json
+from src.Product import Product
+from src.Category import Category
+from src.load_json_func import load_categories_from_json
 
 
 def test_load_categories_from_json(tmp_path):

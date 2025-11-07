@@ -1,5 +1,5 @@
-from Product import Product
-from Category import Category
+from src.Product import Product
+from src.Category import Category
 
 
 def test_product_init():
