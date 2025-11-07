@@ -1,6 +1,7 @@
 from Product import Product
 
 
+
 class Smartphone(Product):
 
     def __init__(

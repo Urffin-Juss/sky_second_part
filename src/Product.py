@@ -1,4 +1,6 @@
-class Product:
+from src.Base_Product import BaseProduct
+
+class Product(BaseProduct):
 
     def __init__(self, name: str, description: str, price: int, quantity: int):
         self.name = name
