@@ -19,8 +19,7 @@ class Product(LogCreationMixin, BaseProduct):
     def price(self, value: int):
 
         if value <= 0:
-            print("Цена должна быть больше ноля")
-        else:
+            print("Цена не должна быть нулевая или отрицательная")
             self.__price = value
 
     @classmethod

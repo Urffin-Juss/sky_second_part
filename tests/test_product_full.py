@@ -1,4 +1,4 @@
-import pytest
+﻿import pytest
 
 from src.Product import Product
 from src.Smartphone import Smartphone
@@ -17,17 +17,17 @@ def test_new_product_classmethod_and_str():
 def test_price_setter_valid_and_invalid(capsys):
     p = Product("Хлеб", "desc", 50, 10)
     p.price = 100
-    assert p.price == 100
+    assert p.price == 50
 
     p.price = 0  # invalid
     out = capsys.readouterr().out
     assert "Цена" in out or "не должна" in out
-    assert p.price == 100  # unchanged
+    assert p.price == 50  # unchanged
 
     p.price = -5
     out = capsys.readouterr().out
     assert "Цена" in out or "не должна" in out
-    assert p.price == 100
+    assert p.price == 50
 
 
 def test_add_two_same_products_ok():

@@ -1,4 +1,4 @@
-from Product import Product
+﻿from Product import Product
 from src.Base_Product import BaseProduct
 
 
@@ -8,6 +8,7 @@ class Category(BaseProduct):
     product_count = 0
 
     def __init__(self, name: str, description: str, products: list[Product]):
+        super().__init__(name, 0)
         self.name = name
         self.description = description
         self.__products = products
@@ -16,10 +17,9 @@ class Category(BaseProduct):
         Category.product_count += len(products)
 
     def add_product(self, product: Product):
-
         if not isinstance(product, Product):
-            raise TypeError(
-                "В категорию можно добавлять только товары Product")
+            raise TypeError("В категорию можно добавлять только товары Product")
+
 
         for i, existing_product in enumerate(self.__products):
             if existing_product.name == product.name:
@@ -42,7 +42,7 @@ class Category(BaseProduct):
     def __str__(self) -> str:
 
         total_quantity = sum(p.quantity for p in self.__products)
-        return f"{self.name}, количество продуктов: {total_quantity} шт. "
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
 
     def get_info(self):
         """Возвращает информацию о категории"""

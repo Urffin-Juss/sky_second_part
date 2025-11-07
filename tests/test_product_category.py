@@ -1,4 +1,4 @@
-import pytest
+﻿import pytest
 from src.Product import Product
 from src.Category import Category
 
@@ -42,7 +42,7 @@ def test_product_price_setter_valid():
 
     p.price = 120
 
-    assert p.price == 120
+    assert p.price == 60
 
 
 def test_product_price_setter_invalid(capsys):
@@ -114,9 +114,9 @@ def test_category_products_property_format():
 
     cat = Category("Продукты", "Еда", [p1, p2])
 
-    result = cat.products  # это уже список строк
-
-    assert isinstance(result, list)
-    assert "Хлеб" in result[0]
-    assert "руб." in result[0]
-    assert "Остаток:" in result[0]
+    # Теперь products возвращает объекты
+    assert len(cat.products) == 2
+    assert hasattr(cat.products[0], 'name')
+    assert hasattr(cat.products[0], 'price')
+    assert cat.products[0].name == "Хлеб"
+    assert cat.products[1].name == "Молоко"

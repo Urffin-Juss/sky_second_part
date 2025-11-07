@@ -1,4 +1,4 @@
-import pytest
+﻿import pytest
 from src.Product import Product
 from src.Category import Category
 from src.Smartphone import Smartphone
@@ -34,13 +34,13 @@ def test_category_str():
 
 
 def test_category_products_property_uses_product_str():
-    """Проверяем, что геттер products теперь отдаёт строки из __str__ продукта."""
     p1 = Product("Хлеб", "Пшеничный", 50, 10)
     cat = Category("Продукты", "Еда", [p1])
 
-    products_view = cat.products
-    assert len(products_view) == 1
-    assert products_view[0] == "Хлеб, 50 руб. Остаток: 10 шт."
+    # Теперь products возвращает объекты, проверяем их атрибуты
+    assert len(cat.products) == 1
+    assert hasattr(cat.products[0], 'name')
+    assert cat.products[0].name == "Хлеб"
 
 
 def test_add_product_allows_product():
