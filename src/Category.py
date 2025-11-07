@@ -30,17 +30,14 @@ class Category(BaseProduct):
             self.products.append(product)
 
     @property
-    def products(self) -> list[str]:
+    def products(self) -> list[Product]:
         """
                 Геттер для приватного списка товаров.
                 Возвращает список строк в формате:
                 'Название продукта, 80 руб. Остаток: 15 шт.'
                 """
 
-        return [
-            f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт."
-            for p in self.__products
-        ]
+        return self.__products
 
     def __str__(self) -> str:
 

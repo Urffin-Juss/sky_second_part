@@ -40,20 +40,29 @@ def test_load_categories_from_json(tmp_path):
 
     categories = load_categories_from_json(str(json_path))
 
-    # ТЕСТИРУЕМ КАК СТРОКИ (если функция возвращает строки)
+    # ДИАГНОСТИКА:
+    print(f"categories[0] тип: {type(categories[0])}")
+    print(f"categories[0]: {categories[0]}")
+    print(f"categories[0].products тип: {type(categories[0].products)}")
+    print(f"categories[0].products: {categories[0].products}")
+    if categories[0].products:
+        print(f"categories[0].products[0] тип: {type(categories[0].products[0])}")
+        print(f"categories[0].products[0]: {categories[0].products[0]}")
+
+
     assert len(categories) == 2
 
-    # Проверяем что это строки с нужной информацией
+
     assert "Продукты" in categories[0]
     assert "Бытовая химия" in categories[1]
 
-    # Если products тоже строки, проверяем содержимое
+
     if hasattr(categories[0], 'products'):
         assert len(categories[0].products) == 2
         assert "Хлеб" in categories[0].products[0]
         assert "50" in categories[0].products[0]  # цена
     else:
-        # Или может быть вся информация в одной строке
+
         assert "Хлеб" in categories[0]
         assert "50" in categories[0]
         assert "Молоко" in categories[0]
