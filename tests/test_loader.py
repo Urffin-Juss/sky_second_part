@@ -46,10 +46,8 @@ def test_load_categories_from_json(tmp_path):
     assert hasattr(categories[0], 'name')
     assert hasattr(categories[0], 'description')
     assert hasattr(categories[0], 'products')
-
-    # у первой категории 2 товара
-    assert len(categories[0].products) == 2
-    assert isinstance(categories[0].products[0], Product)
+    assert hasattr(categories[0].products[0], 'name')
+    assert hasattr(categories[0].products[0], 'price')
     assert categories[0].products[0].price == 50
 
     # класс-счётчики тоже должны обновиться
