@@ -27,3 +27,7 @@ class Smartphone(Product):
         base = super().__str__()
         return (f"{base} (смартфон {self.model}, {self.memory} "
                 f"ГБ, цвет: {self.color})")
+
+    def get_info(self):
+        """Возвращает информацию о смартфоне"""
+        return f"{self.name} - {self.description}, производительность: {self.performance}"

@@ -25,3 +25,7 @@ class LawnGrass(Product):
             f"{base} (газонная трава, страна: {self.country}, "
             f"прорастание: {self.germination_period} дн., цвет: {self.color})"
         )
+
+    def get_info(self):
+        """Возвращает информацию о газонной траве"""
+        return f"{self.name} - {self.description}, страна: {self.country}"
