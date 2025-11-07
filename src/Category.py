@@ -21,8 +21,13 @@ class Category(BaseProduct):
             raise TypeError(
                 "В категорию можно добавлять только товары Product")
 
-        self.__products.append(product)
-        Category.product_count += 1
+        for i, existing_product in enumerate(self.products):
+            if not existing_product.name == product.name:
+                self.products[i] = product
+                break
+        else:
+
+            self.products.append(product)
 
     @property
     def products(self) -> list[str]:

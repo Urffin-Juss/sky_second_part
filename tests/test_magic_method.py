@@ -1,3 +1,4 @@
+import pytest
 from src.Product import Product
 from src.Category import Category
 from src.Smartphone import Smartphone
