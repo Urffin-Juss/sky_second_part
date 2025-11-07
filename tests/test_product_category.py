@@ -56,7 +56,7 @@ def test_product_price_setter_invalid(capsys):
     assert p.price == 50
 
     # пробуем отрицательную
-    p.price = -10
+    old_price = p.price; p.price = -10; assert p.price == old_price
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
     # цена опять не изменилась

@@ -24,7 +24,7 @@ def test_price_setter_valid_and_invalid(capsys):
     assert "Цена" in out or "не должна" in out
     assert p.price == 50  # unchanged
 
-    p.price = -5
+    old_price = p.price; p.price = -5; assert p.price == old_price
     out = capsys.readouterr().out
     assert "Цена" in out or "не должна" in out
     assert p.price == 50
