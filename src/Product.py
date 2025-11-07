@@ -48,7 +48,8 @@ class Product:
     def __add__(self, other):
 
         if not isinstance(other, Product):
-            raise TypeError ("Только для объекта класса Product и его наследников")
+            raise TypeError(
+                "Только для объекта класса Product и его наследников")
 
         if type(self) is not type(other):
             raise TypeError("Нельзя складывать товары разных типов")

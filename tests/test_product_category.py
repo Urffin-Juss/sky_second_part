@@ -2,8 +2,6 @@ from Product import Product
 from Category import Category
 
 
-
-
 def test_product_init():
     p = Product("Хлеб", "Пшеничный", 50, 10)
 
@@ -63,6 +61,7 @@ def test_product_price_setter_invalid(capsys):
     # цена опять не изменилась
     assert p.price == 50
 
+
 def test_category_init_and_class_counters():
     # обнулим, чтобы тест был повторяемый
     Category.category_count = 0
@@ -120,4 +119,3 @@ def test_category_products_property_format():
     assert "Хлеб" in result[0]
     assert "руб." in result[0]
     assert "Остаток:" in result[0]
-

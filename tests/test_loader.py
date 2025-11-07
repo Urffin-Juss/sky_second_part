@@ -39,7 +39,8 @@ def test_load_categories_from_json(tmp_path):
     ]
 
     json_path = tmp_path / "data.json"
-    json_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    json_path.write_text(json.dumps(
+        data, ensure_ascii=False), encoding="utf-8")
 
     categories = load_categories_from_json(str(json_path))
 

@@ -17,7 +17,8 @@ class Category:
     def add_product(self, product: Product):
 
         if not isinstance(product, Product):
-            raise TypeError("В категорию можно добавлять только товары (Product и его наследников)")
+            raise TypeError(
+                "В категорию можно добавлять только товары Product")
 
         self.__products.append(product)
         Category.product_count += 1
@@ -33,7 +34,7 @@ class Category:
         return [
             f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт."
             for p in self.__products
-            ]
+        ]
 
     def __str__(self) -> str:
 

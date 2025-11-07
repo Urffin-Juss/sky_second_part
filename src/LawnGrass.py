@@ -18,7 +18,6 @@ class LawnGrass(Product):
         self.germination_period = germination_period
         self.color = color
 
-
     def __str__(self) -> str:
 
         base = super.__str__()
