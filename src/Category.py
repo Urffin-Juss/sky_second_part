@@ -30,3 +30,17 @@ class Category(BaseProduct):
 
     def get_info(self):
         return f"Категория: {self.name}, количество продуктов: {len(self.products)}"
+
+    def average_price(self) -> float:
+
+
+        try:
+
+            total_price = sum(product.price for product in self.__products)
+
+            total_products = len(self.__products)
+
+            return total_price / total_products
+        except ZeroDivisionError:
+
+            return 0
