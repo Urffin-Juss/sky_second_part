@@ -1,6 +1,7 @@
 from src.Base_Product import BaseProduct
 from src.LogCreationMixin import LogCreationMixin
 
+
 class Product(LogCreationMixin, BaseProduct):
 
     def __init__(self, name: str, description: str, price: int, quantity: int):

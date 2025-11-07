@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="0.166" timestamp="2025-11-07T10:45:02.480420+03:00" hostname="Ipomogos"><testcase classname="" name="tests.test_mixin" time="0.000"><error message="collection failure">ImportError while importing test module 'D:\skypro\second_one\tests\test_mixin.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Я\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_mixin.py:3: in &lt;module&gt;
+    from Product import Product
+E   ModuleNotFoundError: No module named 'Product'</error></testcase></testsuite></testsuites>
