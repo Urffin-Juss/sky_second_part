@@ -1,4 +1,6 @@
 from src.Product import Product
+from src.Base_Product import BaseProduct
+from src.LogCreationMixin import LogCreationMixin
 
 
 def test_mixin_prints_on_creation(capsys):
